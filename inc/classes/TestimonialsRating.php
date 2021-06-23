@@ -21,6 +21,8 @@ class TestimonialsRating extends Timber {
     add_action('wp_enqueue_scripts', array($this, 'testimonials_rating_assets'));
     
     add_filter('the_content', array($this, 'remove_autop_testimonials'), 0);
+    
+    add_action('plugins_loaded' , array($this, 'testimonials_custom_fields'));
   }
   
   function remove_autop_testimonials($content) {
@@ -107,12 +109,65 @@ class TestimonialsRating extends Timber {
   }
   
   public function add_to_twig($twig) { 
-    $twig->addExtension(new \Twig_Extension_StringLoader());
+    if(!class_exists('Twig_Extension_StringLoader')){
+      $twig->addExtension(new \Twig_Extension_StringLoader());
+    }
     return $twig;
   }
 
   public function add_to_context($context) {
     return $context;    
+  }
+  
+  public function testimonials_custom_fields() {
+    if( function_exists('acf_add_local_field_group') ):
+    
+    acf_add_local_field_group(array(
+    	'key' => 'group_60d37f3ba214d',
+    	'title' => 'Testimonials',
+    	'fields' => array(
+    		array(
+    			'key' => 'field_60d37f52d3310',
+    			'label' => 'Testimonial Rating',
+    			'name' => 'testimonial_rating',
+    			'type' => 'number',
+    			'instructions' => '',
+    			'required' => 0,
+    			'conditional_logic' => 0,
+    			'wrapper' => array(
+    				'width' => '',
+    				'class' => '',
+    				'id' => '',
+    			),
+    			'default_value' => 5,
+    			'placeholder' => '',
+    			'prepend' => '',
+    			'append' => '',
+    			'min' => 1,
+    			'max' => 5,
+    			'step' => 1,
+    		),
+    	),
+    	'location' => array(
+    		array(
+    			array(
+    				'param' => 'post_type',
+    				'operator' => '==',
+    				'value' => 'testimonials',
+    			),
+    		),
+    	),
+    	'menu_order' => 0,
+    	'position' => 'normal',
+    	'style' => 'default',
+    	'label_placement' => 'top',
+    	'instruction_placement' => 'label',
+    	'hide_on_screen' => '',
+    	'active' => true,
+    	'description' => '',
+    ));
+    
+    endif;
   }
 
 }
