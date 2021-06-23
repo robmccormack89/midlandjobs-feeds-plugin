@@ -1,3 +1,3 @@
-# Featured Item Section
+# Testimonials Rating
 
-Adds featured item section via shortcode featured_content_item
+Adds testimonials cpt & cpt shortcode [testimonials_rating_block]
