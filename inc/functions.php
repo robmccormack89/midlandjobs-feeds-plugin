@@ -1,6 +1,6 @@
 <?php
 
-function testimonials_rating_block() {
+function testimonials_rating_section() {
   
   // if timber::locations is empty (another plugin hasn't already added to it), make it an array
   if(!Timber::$locations) Timber::$locations = array();
@@ -21,5 +21,6 @@ function testimonials_rating_block() {
   );
   $context['testimonials'] = new Timber\PostQuery($args);
   
-  Timber::render('testimonials-rating.twig', $context);
+  $out = Timber::compile('testimonials-rating.twig', $context);
+  return $out;
 }

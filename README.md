@@ -1,3 +1,3 @@
 # Testimonials Rating
 
-Adds testimonials cpt & cpt shortcode [testimonials_rating_block]
+Adds testimonials cpt & cpt shortcode [testimonials_rating_section]

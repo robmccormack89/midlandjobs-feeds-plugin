@@ -12,7 +12,7 @@ class TestimonialsRating extends Timber {
     add_filter('timber/context', array($this, 'add_to_context'));
     
     // shortcode for the markup
-    add_shortcode('testimonials_rating_block', 'testimonials_rating_block'); // see inc/functions.php
+    add_shortcode('testimonials_rating_section', 'testimonials_rating_section'); // see inc/functions.php
     
     // plugin stuff. these actions will be baked in
     add_action('init', array($this, 'register_testimonials')); // register cpts on init action

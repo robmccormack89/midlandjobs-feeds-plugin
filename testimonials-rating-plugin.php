@@ -2,7 +2,7 @@
 /*
 Plugin Name: Testimonials Rating Section by RMcC
 Plugin URI: #
-Description: Adds testimonials cpt & cpt shortcode
+Description: Adds testimonials cpt & cpt shortcode [testimonials_rating_section]
 Version: 1.0.0
 Author: robmccormack89
 Author URI: #
