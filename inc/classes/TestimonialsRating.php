@@ -6,57 +6,27 @@ class TestimonialsRating extends Timber {
 
   public function __construct() {
     parent::__construct();
-    
-    // timber stuff. the usual stuff
     add_filter('timber/twig', array($this, 'add_to_twig'));
     add_filter('timber/context', array($this, 'add_to_context'));
     
-    // shortcode for the markup
-    add_shortcode('testimonials_rating_section', 'testimonials_rating_section'); // see inc/functions.php
-    
-    // plugin stuff. these actions will be baked in
-    add_action('init', array($this, 'register_testimonials')); // register cpts on init action
-    
-    // enqueue plugin assets
-    add_action('wp_enqueue_scripts', array($this, 'testimonials_rating_assets'));
-    
+    add_action('plugins_loaded', array($this, 'plugin_timber_locations'));
+    add_action('plugins_loaded', array($this, 'plugin_text_domain_init')); 
+    add_action('wp_enqueue_scripts', array($this, 'plugin_enqueue_assets'));
+
     add_filter('the_content', array($this, 'remove_autop_testimonials'), 0);
     
-    add_action('plugins_loaded' , array($this, 'testimonials_custom_fields'));
+    add_action('init', array($this, 'register_post_types'));
+    add_action('plugins_loaded' , array($this, 'plugin_custom_fields'));
+    
+    add_shortcode('testimonials_rating_section', 'testimonials_rating_section');
   }
   
-  function remove_autop_testimonials($content) {
+  public function remove_autop_testimonials($content) {
     'testimonials' === get_post_type() && remove_filter( 'the_content', 'wpautop' );
     return $content;
   }
   
-  public function testimonials_rating_assets() {
-    wp_enqueue_style(
-      'swiper-js',
-      TESTIMONIALS_RATING_URL . 'public/css/swiper-bundle.min.css'
-    );
-    wp_enqueue_script(
-      'swiper-js',
-      TESTIMONIALS_RATING_URL . 'public/js/swiper-bundle.min.js',
-      '',
-      '1.0.0',
-      true
-    );
-    wp_enqueue_style(
-      'testimonials-rating',
-      TESTIMONIALS_RATING_URL . 'public/css/testimonials-rating.css',
-      array('swiper-js')
-    );
-    wp_enqueue_script(
-      'testimonials-rating',
-      TESTIMONIALS_RATING_URL . 'public/js/testimonials-rating.js',
-      array('jquery', 'swiper-js'),
-      '1.0.0',
-      true
-    );
-  }
-  
-  public function register_testimonials() {
+  public function register_post_types() {
     $labels_testimonials = array(
       'name'                  => _x( 'Testimonials', 'Testimonials label: Plural', 'testimonials-rating' ),
       'singular_name'         => _x( 'Testimonial', 'Testimonial label: Singular', 'testimonials-rating' ),
@@ -107,19 +77,7 @@ class TestimonialsRating extends Timber {
     );
     register_post_type( 'testimonials', $args_testimonials );
   }
-  
-  public function add_to_twig($twig) { 
-    if(!class_exists('Twig_Extension_StringLoader')){
-      $twig->addExtension(new \Twig_Extension_StringLoader());
-    }
-    return $twig;
-  }
-
-  public function add_to_context($context) {
-    return $context;    
-  }
-  
-  public function testimonials_custom_fields() {
+  public function plugin_custom_fields() {
     if( function_exists('acf_add_local_field_group') ):
     
     acf_add_local_field_group(array(
@@ -169,5 +127,52 @@ class TestimonialsRating extends Timber {
     
     endif;
   }
-
+  
+  public function plugin_timber_locations() {
+    // if timber::locations is empty (another plugin hasn't already added to it), make it an array
+    if(!Timber::$locations) Timber::$locations = array();
+    // add a new views path to the locations array
+    array_push(
+      Timber::$locations, 
+      TESTIMONIALS_RATING_PATH . 'views'
+    );
+  }
+  public function plugin_text_domain_init() {
+    load_plugin_textdomain('testimonials-rating', false, TESTIMONIALS_RATING_BASE. '/languages');
+  }
+  public function plugin_enqueue_assets() {
+    wp_enqueue_style(
+      'swiper-js',
+      TESTIMONIALS_RATING_URL . 'public/css/swiper-bundle.min.css'
+    );
+    wp_enqueue_script(
+      'swiper-js',
+      TESTIMONIALS_RATING_URL . 'public/js/swiper-bundle.min.js',
+      '',
+      '1.0.0',
+      true
+    );
+    wp_enqueue_style(
+      'testimonials-rating',
+      TESTIMONIALS_RATING_URL . 'public/css/testimonials-rating.css',
+      array('swiper-js')
+    );
+    wp_enqueue_script(
+      'testimonials-rating',
+      TESTIMONIALS_RATING_URL . 'public/js/testimonials-rating.js',
+      array('jquery', 'swiper-js'),
+      '1.0.0',
+      true
+    );
+  }
+  
+  public function add_to_twig($twig) { 
+    if(!class_exists('Twig_Extension_StringLoader')){
+      $twig->addExtension(new \Twig_Extension_StringLoader());
+    }
+    return $twig;
+  }
+  public function add_to_context($context) {
+    return $context;    
+  }
 }
