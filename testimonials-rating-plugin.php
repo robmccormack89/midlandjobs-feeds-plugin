@@ -2,7 +2,7 @@
 /*
 Plugin Name: Testimonials Rating Section by RMcC
 Plugin URI: #
-Description: Adds testimonials cpt & cpt shortcode [testimonials_rating_section]
+Description: Adds testimonials content-type to the site. Add a testimonials section to a page using the [testimonials_rating_section] shortcode. Ideal for the Homepage. This plugin is translation-ready.
 Version: 1.0.0
 Author: robmccormack89
 Author URI: #
