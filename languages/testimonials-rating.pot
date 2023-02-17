@@ -1,4 +1,4 @@
-# Copyright (C) 2021 testimonials-rating
+# Copyright (C) 2023 testimonials-rating
 # This file is distributed under the same license as the testimonials-rating package.
 msgid ""
 msgstr ""
@@ -13,27 +13,116 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: inc/classes/TestimonialsRating.php:59, inc/classes/TestimonialsRating.php:61, inc/classes/TestimonialsRating.php:88
-msgctxt "Testimonials label: Plural"
+#: inc/classes/TestimonialsRating.php:36
+msgctxt "Post Type General Name"
 msgid "Testimonials"
 msgstr ""
 
-#: inc/classes/TestimonialsRating.php:60, inc/classes/TestimonialsRating.php:62
-msgctxt "Testimonial label: Singular"
+#: inc/classes/TestimonialsRating.php:37
+msgctxt "Post Type Singular Name"
 msgid "Testimonial"
 msgstr ""
 
-#: inc/classes/TestimonialsRating.php:63
-msgctxt "Testimonials label: Archive"
+#: inc/classes/TestimonialsRating.php:38
 msgid "Testimonials"
 msgstr ""
 
-#: inc/classes/TestimonialsRating.php:89
-msgctxt "Testimonials description"
-msgid "Competition Testimonial..."
+#: inc/classes/TestimonialsRating.php:39, inc/classes/TestimonialsRating.php:65
+msgid "Testimonial"
 msgstr ""
 
-#: views/temp/testimonials-rating.php:3
-msgctxt "Testimonials block title"
-msgid "Testimonials"
+#: inc/classes/TestimonialsRating.php:40
+msgid "Item Archives"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:41
+msgid "Item Attributes"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:42
+msgid "Parent Item:"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:43
+msgid "All Items"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:44
+msgid "Add New Item"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:45
+msgid "Add New"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:46
+msgid "New Item"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:47
+msgid "Edit Item"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:48
+msgid "Update Item"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:49
+msgid "View Item"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:50
+msgid "View Items"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:51
+msgid "Search Item"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:52
+msgid "Not found"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:53
+msgid "Not found in Trash"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:54
+msgid "Featured Image"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:55
+msgid "Set featured image"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:56
+msgid "Remove featured image"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:57
+msgid "Use as featured image"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:58
+msgid "Insert into item"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:59
+msgid "Uploaded to this item"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:60
+msgid "Items list"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:61
+msgid "Items list navigation"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:62
+msgid "Filter items list"
+msgstr ""
+
+#: inc/classes/TestimonialsRating.php:66
+msgid "Testimonial Description"
 msgstr ""
