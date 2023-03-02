@@ -34,4 +34,6 @@ Add some feeds to your site using the [midlandjob_feeds] shortcode.....
 
 6. Paste this shortcode onto a page/post to display the feed. When editing a page/post, you can add a shortcode block specifically by searching for it within the blocks. Paste the shortcode intothe shortcode block.
  
-## Other
+## Demo
+
+![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
