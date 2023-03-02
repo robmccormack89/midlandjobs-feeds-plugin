@@ -22,11 +22,11 @@ Add some feeds to your site using the [midlandjob_feeds] shortcode.....
 
         [midlandjob_feeds url="https://midlandjobs.ie/feeds/standard.xml" disable_header]
 
-3. disable the popup modals for each job in the feed, use the flag disable_modals:
+3. to disable the popup modals for each job in the feed, use the flag disable_modals:
 
         [midlandjob_feeds url="https://midlandjobs.ie/feeds/standard.xml" disable_modals]
 
-4. enable carousel mode for a feed with the carousel flag
+4. to enable carousel mode for a feed, use the carousel flag
 
         [midlandjob_feeds url="https://midlandjobs.ie/feeds/standard.xml" carousel]
 
