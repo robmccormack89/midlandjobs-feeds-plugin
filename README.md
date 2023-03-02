@@ -36,4 +36,4 @@ Add some feeds to your site using the [midlandjob_feeds] shortcode.....
  
 ## Demo
 
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/demo.jpg?raw=true)
+![alt text](https://github.com/robmccormack89/midlandjobs-feeds-plugin/blob/master/demo.jpg?raw=true)
