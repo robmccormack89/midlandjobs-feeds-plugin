@@ -1,0 +1,52 @@
+# Copyright (C) 2023 midlandjobs-feeds
+# This file is distributed under the same license as the midlandjobs-feeds package.
+msgid ""
+msgstr ""
+"Project-Id-Version: midlandjobs-feeds\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2023-03-02 08:13+0000\n"
+"Project-Id-Version: undefined\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: views/temp/feed-carousel.php:57, views/temp/feed.php:92
+msgid "%s ago"
+msgstr ""
+
+#: views/temp/feed-carousel.php:150, views/temp/feed.php:67, views/temp/feed.php:109, views/temp/feed.php:161, views/temp/feed.php:175, views/temp/feed.php:187
+msgid "Visit company website"
+msgstr ""
+
+#: views/temp/feed-carousel.php:152, views/temp/feed.php:189
+msgid "Apply for this job"
+msgstr ""
+
+#: views/temp/feed.php:43
+msgid "%s Logo"
+msgstr ""
+
+#: views/temp/feed.php:46
+msgid "Visit Website"
+msgstr ""
+
+#: views/temp/feed.php:47
+msgid "View rss/xml feed"
+msgstr ""
+
+#: views/temp/feed.php:67, views/temp/feed.php:109, views/temp/feed.php:116, views/temp/feed.php:161
+msgid "View job at %s"
+msgstr ""
+
+#: views/temp/feed.php:83
+msgid "Expand job"
+msgstr ""
+
+#: views/temp/feed.php:91
+msgid "This job was posted %s ago"
+msgstr ""

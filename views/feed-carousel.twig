@@ -1,0 +1,192 @@
+{% extends 'feed.twig' %}
+
+{% block feed_styles %}
+  {{ parent() }}
+  <style>
+    body {
+      --wp--style--global--content-size: 800px;
+    }
+    .job-logo img {
+      width: 120px
+    }
+    @media only screen and (max-width: 600px) {
+      .job-logo img {
+        max-width: 70px;
+      }
+    }
+    .uk-modal-container .uk-modal-dialog {
+      width: 700px;
+    }
+    .uk-modal-body {
+      font-size: .9rem;
+    }
+    .box-shadow-remove {
+      box-shadow: none;
+    }
+  </style>
+{% endblock %}
+
+{% block feed_jobs_listing %}
+  {% if feed.jobs is not empty %}
+    <section class="uk-position-relative">
+      <div class="swiper swiper-{{ q }}">
+        <div class="swiper-wrapper jobs-listing">
+          {% for job in feed.jobs %}
+            <div class="swiper-slide job-item">
+              <div class="job">
+                <article id="job-{{ job.referencenumber|e('esc_html') }}" class="job-article uk-card uk-card-default uk-border-rounded box-shadow-remove uk-grid-collapse" uk-grid>
+                  <div class="job-content-area uk-width-expand">
+                    <div class="uk-card-body uk-card-small uk-padding-remove">
+                      <div class="uk-position-relative">
+
+                        {% if job.date or job.jobtype %}
+                          <div class="uk-position-top-right uk-text-small">
+
+                            {# modal popup trigger #}
+                            {% if not feed.disable_modals %}
+                              <div class="uk-flex uk-flex-right uk-margin-remove">
+                                <a class="uk-link-muted" uk-icon="icon: desktop; ratio: 1.2" href="#modal-{{ job.referencenumber|e('esc_html') }}" uk-toggle></a>
+                              </div>
+                            {% endif %}
+
+                            {% if job.date %}
+                              {% set job_dated %}
+                                <time>{{ fn('human_time_diff', job.date|date('U'), fn('current_time', 'timestamp')) }}</time>
+                              {% endset %}
+                              <p class="uk-text-meta uk-margin-remove">
+                                {{ __('%s ago', 'midlandjobs-feeds')|format(job_dated)|e('wp_kses_post') }}
+                              </p>
+                            {% endif %}
+
+                            {% set job_types = fn('explode', ',', job.jobtype) %}
+                            {% for type in job_types %}
+                              <p class="uk-text-meta uk-margin-remove uk-text-right uk-text-small"><span class="uk-badge">{{ type|e('esc_html') }}</span></p>
+                            {% endfor %}
+                            
+                          </div>
+                        {% endif %}
+
+                        {% if job.title or job.salary %}
+                          <div class="uk-width-2-5">
+
+                            {% if job.companylogo %}
+                              <div class="job-logo uk-width-auto uk-margin-small-bottom uk-hidden@l">
+                                <a href="{{ job.url|e('esc_url') }}" target="_blank">
+                                  <img class="media-object profile__img-company" src="{{ job.companylogo|e('esc_url') }}" alt="{{ job.title|e('esc_html') }}">
+                                </a>
+                              </div>
+                            {% endif %}
+
+                            {% if job.title %}
+                              <h3 class="uk-h6 uk-text-bold uk-margin-remove"><a class="uk-link-heading" href="{{ job.url|e('esc_url') }}">{{ job.title|e('esc_html') }}</a></h3>
+                            {% endif %}
+                            {% if job.salary %}
+                              <p class="uk-text-meta uk-margin-remove">{{ job.salary|e('esc_html') }}</p>
+                            {% endif %}
+                          </div>
+                        {% endif %}
+
+                        {% if job.company or job.location %}
+                          <div class="uk-width-3-4 uk-margin-top">
+                            {% if job.company %}
+                              <p class="uk-margin-remove uk-text-emphasis uk-text-small"><span uk-icon="icon: crosshairs; ratio: .8" class="uk-text-muted"></span> {{ job.company|e('esc_html') }}</p>
+                            {% endif %}
+                            {% if job.location %}
+                              <p class="uk-margin-remove uk-text-emphasis uk-text-small"><span uk-icon="icon: location; ratio: .8" class="uk-text-muted"></span> {{ job.location|e('esc_html') }}</p>
+                            {% endif %}
+                          </div>
+                        {% endif %}
+
+                        {% if job.description %}
+                          <div class="job-tease-content uk-margin-remove-bottom uk-margin-top uk-text-meta uk-text-small">
+                            {{ fn('strip_tags', job.description)|truncate(8)|e('esc_html') }}
+                          </div>
+                        {% endif %}
+
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                {% if not feed.disable_modals %}
+                  <div id="modal-{{ job.referencenumber|e('esc_html') }}" class="uk-modal-container uk-modal" uk-modal>
+                    <div class="uk-modal-dialog">
+
+                        <header class="uk-modal-header uk-background-muted uk-position-relative">
+                          <h2 class="uk-h3 uk-text-bold uk-margin-remove">{{ job.title|e('esc_html') }}</h2>
+                          <a href="#" class="uk-close uk-modal-close uk-icon uk-position-center-right uk-position-small" uk-icon="icon: close; ratio: 1.5"></a>
+                        </header>
+
+                        <div class="uk-modal-body uk-overflow-auto" uk-overflow-auto>
+                          <div id="author-wrap" class="uk-margin-bottom">
+                            <div class="uk-grid uk-grid-medium uk-flex uk-flex-middle" uk-grid="">
+                              {% if job.companylogo %}
+                                <div class="job-logo uk-width-auto uk-first-column uk-visible@m">
+                                  <a href="{{ job.companywebsite|default(job.url)|e('esc_url') }}" target="_blank"> 
+                                    <img class="media-object profile__img-company" src="{{ job.companylogo|e('esc_url') }}" alt="{{ job.title|e('esc_html') }}">
+                                  </a>
+                                </div>
+                              {% endif %}
+                              <div class="uk-width-expand">
+                                <h4 class="uk-margin-remove uk-text-bold">{{ job.company|e('esc_html') }}</h4>
+                                {% if job.companydescription %}
+                                  <span class="uk-text-small uk-text-muted">{{ fn('strip_tags', job.companydescription)|truncate(18)|e('esc_html') }}</span>
+                                {% endif %}
+                              </div>
+                              {% if job.companywebsite %}
+                                <div class="uk-width-auto">
+                                  <div class="uk-inline">
+                                    <a href="{{ job.companywebsite|e('esc_url') }}" target="_blank" class="uk-icon-button uk-icon" uk-icon="icon:link"></a>
+                                  </div>
+                                </div>
+                              {% endif %}
+                            </div>
+                          </div>
+                          <hr>
+                          {{ job.description|e('wp_kses_post') }}
+                        </div>
+
+                        <footer class="uk-modal-footer uk-background-muted uk-text-right">
+                          {% if job.companywebsite %}
+                            <a class="uk-button uk-button-default uk-text-bold uk-visible@m" href="{{ job.companywebsite|e('esc_url') }}" target="_blank">{{ __('Visit company website', 'midlandjobs-feeds')|e('esc_html') }}</a>
+                          {% endif %}
+                          <a class="uk-button uk-button-primary uk-text-bold" href="{{ job.url|e('esc_url') }}" target="_blank">{{ __('Apply for this job', 'midlandjobs-feeds')|e('esc_html') }}</a>
+                        </footer>
+
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="swiper-pagination swiper-pagination-{{ q }}"></div>
+    </section>
+    <script>
+      var swiper_{{ q }} = new Swiper('.swiper-{{ q }}', {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        autoplay: {
+          delay: 6000,
+          disableOnInteraction: true,
+        },
+        // init: false,
+        pagination: {
+          el: '.swiper-pagination-{{ q }}',
+          dynamicBullets: true,
+        },
+        breakpoints: {
+          960: {
+            slidesPerView: 2,
+            spaceBetween: 15,
+          },
+          1290: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+        }
+      });
+    </script>
+  {% endif %}
+
+{% endblock %}
