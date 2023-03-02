@@ -26,14 +26,14 @@ Add some feeds to your site using the [midlandjob_feeds] shortcode.....
 
         [midlandjob_feeds url="https://midlandjobs.ie/feeds/standard.xml" disable_modals]
 
-4. to enable carousel mode for a feed, use the carousel flag
+4. to enable carousel mode for a feed, use the carousel flag:
 
         [midlandjob_feeds url="https://midlandjobs.ie/feeds/standard.xml" carousel]
 
 5. You can generate the feed links for the url part of the shortcode inside your smartjobboard backend, using the 'customize your feed' option
 
-6. Paste this shortcode onto a page/post to display the feed. When editing a page/post, you can add a shortcode block specifically by searching for it within the blocks. Paste the shortcode intothe shortcode block.
+6. Paste this shortcode onto a page/post to display the feed. When editing a page/post, you can add a shortcode block specifically by searching for it within the blocks. Paste the shortcode into a shortcode block
  
 ## Demo
 
-![alt text](https://github.com/robmccormack89/midlandjobs-feeds-plugin/blob/master/demo.jpg?raw=true)
+![demo img](https://github.com/robmccormack89/midlandjobs-feeds-plugin/blob/master/demo.jpg?raw=true)
